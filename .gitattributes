@@ -1,0 +1,18 @@
+# Normalize line endings; this is a Linux project, keep LF in tree and checkout
+* text=auto eol=lf
+
+*.c    text eol=lf
+*.h    text eol=lf
+*.sh   text eol=lf
+*.py   text eol=lf
+*.md   text eol=lf
+*.conf text eol=lf
+Makefile text eol=lf
+
+# never treat build artifacts / binaries as text
+*.o    binary
+*.ko   binary
+*.obj  binary
+*.png  binary
+*.jpg  binary
+*.gif  binary

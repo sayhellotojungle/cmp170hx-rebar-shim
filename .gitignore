@@ -1,0 +1,24 @@
+# kbuild artifacts
+*.o
+*.ko
+*.mod
+*.mod.c
+*.symvers
+Module.symvers
+modules.order
+.*.cmd
+.tmp_versions/
+.cache/
+
+# python
+__pycache__/
+*.pyc
+
+# local, machine-specific helpers (paths, test wiring)
+/local/
+
+# scratch / boot-log dumps
+/temp/
+
+# editors
+*~
