@@ -1,32 +1,30 @@
 # Contributing
 
-This is a small, hardware-specific kernel module. Changes that touch the PCI
-window layout or the PCFG unlock sequence need real hardware validation.
+Hardware-specific kernel module: changes to the PCI window layout or the PCFG unlock
+sequence must be validated on real hardware.
 
 ## Before sending a change
 
-- Build against the target kernel headers:
-  `make clean && make`.
-- Run `make check` (shell syntax + Python byte-compile).
-- If you can, run the dry-run (`insmod ./cmp_rebar_shim.ko mode=1`) and include
-  the `dmesg` plan in the change description.
-- For layout/register changes, include:
-  - kernel version and compiler;
-  - GPU model/PCI IDs and switch topology (`lspci -tv`);
-  - root prefetchable window and free ranges (`/proc/iomem`);
-  - before/after `dmesg` and BAR sizes;
-  - P2P test output if the change affects BAR1.
-- Do not include vendor firmware, NVIDIA blobs, or cmpunlocker code.
+- `make clean && make` against the target kernel headers; `make check`.
+- Run the dry-run (`insmod ./cmp_rebar_shim.ko mode=1`) and include the `dmesg` plan.
+- For layout/register changes, include: kernel version + compiler; GPU PCI IDs and
+  topology (`lspci -tv`); root prefetch window and free ranges (`/proc/iomem`);
+  before/after `dmesg` and BAR sizes; P2P output if BAR1 is affected.
+- No vendor firmware, NVIDIA blobs, or cmpunlocker code.
 
 ## Style
 
-- Kernel C style, tabs, no unrelated reformatting.
-- Keep the module buildable as an out-of-tree module with the existing Makefile.
-- Keep user-facing log messages prefixed with `cmp_rebar_shim:`.
-- Do not hard-code a user's bus numbers or paths; derive them from the PCI tree
-  and document topology assumptions.
+- Kernel C style, tabs, no unrelated reformatting; keep it buildable out-of-tree with
+  the existing Makefile.
+- Log messages prefixed `cmp_rebar_shim:`.
+- Derive bus numbers/paths from the PCI tree; do not hard-code a machine's values.
 
-## Safety
+## Fixing it on your machine
 
-Changes that commit PCI resource assignments can hang a machine. Test on a
-non-production system with a recovery path (older kernel / live USB).
+If it does not work on your setup, give an AI assistant this repo plus your logs
+(`dmesg`, `lspci -tv`, `/proc/iomem`, `mode=1` dry-run), have it adapt the
+sizes/offsets/window to your topology, and send the result as a PR with before/after
+boot logs.
+
+`commit=1` rewrites PCI resources and can hang a machine - test on non-production
+hardware with a recovery path.

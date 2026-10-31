@@ -2,6 +2,11 @@
 
 ## 0.1.2 - 2026-10-30
 
+- Docs: point at a `--p2p`-capable cmpunlocker - recommend
+  `github.com/bayley/cmpunlocker` first, with the maintained fork
+  `github.com/sayhellotojungle/cmpunlocker` as a fallback when the upstream
+  does not build against a newer NVIDIA driver.
+- Docs: removed `--no-gen2-service` from the cmpunlocker examples and tested flags.
 - `apply()` now verifies that the **exact fixed top window** (`CMP_TOP_START`,
   384 GiB) is free in the root prefetchable window before touching any GPU or
   bridge. Previously the allocation test accepted any 64 GiB-aligned hole while

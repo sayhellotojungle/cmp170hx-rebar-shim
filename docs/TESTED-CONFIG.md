@@ -21,7 +21,7 @@ differ.
 | Kernel | `6.18.18.c1107-trim` x86_64 |
 | Compiler | gcc 12.2.0 (Debian 12.2.0-14) |
 | NVIDIA driver | cmpunlocker `--p2p` build, 610.57.04 |
-| cmpunlocker `--p2p` flags | `--p2p --profile=8gb --no-passthrough --no-gen2-service --no-iommu` |
+| cmpunlocker `--p2p` flags | `--p2p --profile=8gb --no-passthrough --no-iommu` |
 | IOMMU | `amd_iommu=on iommu=pt` |
 | Other cmdline | `pcie_aspm=off`, `modprobe.blacklist=pcspkr` (unrelated) |
 | initramfs | `initramfs-tools` |
